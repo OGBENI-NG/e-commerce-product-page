@@ -6,7 +6,7 @@ import menuIcon from "../img/icon-menu.svg"
 function Navbar() {
     const {toggleCart, toggleOn} = useToggler()
     return(
-        <div>
+        <div className="">
             <img 
                 src={menuIcon} alt="menu-icon"
                 onClick={toggleCart}

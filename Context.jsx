@@ -5,12 +5,19 @@ const Context = createContext()
 
 function ContextProvider({children}) {
     const [serviceData, setServiceData] = useState([])
+    const [cartItem, setCartItem] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [toggleOn, setToggleOn] = useState(false)
 
     //product data
     useEffect(() =>{
         setServiceData(data)
     }, [serviceData])
+
+
+    function toggleCart() {
+        setToggleOn(prevOn => !prevOn)
+    }
 
     const handlePreviousClick = (item) => {
         setCurrentIndex((prevIndex) => 
@@ -22,8 +29,25 @@ function ContextProvider({children}) {
         (prevIndex === item.img.length - 1 ? 0 : prevIndex + 1))
     }
 
+    function addToCart(newItem) {
+        setCartItem(prevItem => [...prevItem, newItem])
+    }
+    
     return (
-        <Context.Provider value={{serviceData, currentIndex, handleNextClick, handlePreviousClick, setCurrentIndex}}>
+        <Context.Provider 
+            value={{
+                serviceData, 
+                currentIndex, 
+                handleNextClick, 
+                handlePreviousClick, 
+                setCurrentIndex, 
+                toggleOn, 
+                setToggleOn,
+                toggleCart,
+                addToCart,
+                cartItem
+            }}
+        >
             {children}
         </Context.Provider>
     )

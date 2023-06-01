@@ -6,7 +6,7 @@ function Thumbnail({item}) {
 
   const thumbnailData = item.img.map((img, index) =>(
     <div
-      className={`thumbnail-container ${currentIndex === index ? "selected" : ""}`}
+      className={`thumbnail-container thumbnail-desktop ${currentIndex === index ? "selected" : ""}`}
       key={index}
       onClick={() => setCurrentIndex(index)}
     >
