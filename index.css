@@ -34,7 +34,7 @@ header,
 button,
 .menu-container,
 .cart-container,
-.carousel-container,
+.light-box-container,
 .add-more-item-container,
 .price-container,
 .cartItem-container{
@@ -114,6 +114,12 @@ header {
     width: 18px;
     margin-left: auto;
 }
+.cart-container-top .em {
+    text-align: center;
+    font-weight: 700;
+    color: var(--Dark-grayish-blue);
+    padding: 40px 0 50px;
+}
 .logo {
     align-self: center;
     padding-left: 15px;
@@ -142,7 +148,7 @@ header {
     height: 35px;
     padding-bottom: 4px;
 }
-.product-img--carousel-container
+.product-img--light-box-container
 .nav-overlay, .nav-bar {
     position: absolute;
     position: fixed;
@@ -155,7 +161,6 @@ header {
 }
 
 .nav-overlay {
-    background:  var(--Overlay);
     display: none;
 }
 
@@ -281,6 +286,7 @@ header {
     padding: 20px;
     margin: 5px 0 20px;
     border-radius: 5px;
+    width: 100%;
 }
 
 button {
@@ -299,11 +305,34 @@ button {
     display: inline-block;
     width: 100%;
 }
+.itemCount {
+    font-size: 18px;
+    font-weight: 700;
+}
+
 
 button > img {
     padding-right: 10px;
     height: 24px;
 }
+
+.addPrice {
+    display: unset;
+    background: none;
+    width: 30px;
+    margin: 0;
+    padding: 10px;
+    box-shadow: none;
+
+}
+.addPrice img {
+    height: max-content;
+    width: max-content;
+    margin: auto;
+}
+
+
+
 
 /* product image overlay */
 .image-modal-container{
@@ -318,23 +347,22 @@ button > img {
     min-height: 100vh;
     z-index: 10;
 }
-
-
-.carousel-container {
+.light-box-container {
     display: none;
 }
 .thumbnail-container {
     height: 80px;
     width: 80px;
 }
+  
 
 @media (min-width: 768px) {
     button,
     .thumbnail,
     .products-image,
-    .plus-icon,
-    .cart-container,
     .overlay-close-icon,
+    .delete-icon,
+    .cart-container,
     a{
         cursor: pointer;
     }
@@ -369,7 +397,7 @@ button > img {
         align-items: center;
     }
 
-    .product-img--carousel-container {
+    .product-img--light-box-container {
         margin: auto;
 
     }
@@ -404,8 +432,12 @@ button > img {
 
     .add-more-item-container {
         width: 40%;
-        padding: 12px 15px;
+        padding: 4px 10px;
         border-radius: 8px;
+    }
+
+    .minus-icon {
+        padding-bottom: 2px;
     }
 
     .main-item-container .description{
@@ -567,7 +599,7 @@ button > img {
     .cart-price-container span{
         font-size: 14px;
     }
-    .carousel-container {
+    .light-box-container {
         display: flex;
         align-items: center;
         justify-content: center;

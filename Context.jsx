@@ -7,17 +7,17 @@ function ContextProvider({children}) {
     const [serviceData, setServiceData] = useState([])
     const [cartItem, setCartItem] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [toggleOn, setToggleOn] = useState(false)
+    const [countCartItem, setCountCartItem] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(125)
 
+    let price = "125" 
+   
     //product data
     useEffect(() =>{
         setServiceData(data)
     }, [serviceData])
 
 
-    function toggleCart() {
-        setToggleOn(prevOn => !prevOn)
-    }
 
     const handlePreviousClick = (item) => {
         setCurrentIndex((prevIndex) => 
@@ -32,6 +32,36 @@ function ContextProvider({children}) {
     function addToCart(newItem) {
         setCartItem(prevItem => [...prevItem, newItem])
     }
+
+    function emptyCart() {
+        setCartItem([])
+        setTotalPrice(Number(price))
+    }
+
+    useEffect(() => {
+        setCountCartItem(cartItem.length)
+    },[cartItem])
+
+    function addToPrice() {
+        if(cartItem.length > 0) {
+            setCountCartItem(prevItem => prevItem + 1);
+            setTotalPrice(prevPrice => prevPrice + Number(price))
+
+        }
+    }
+
+    function minusFromPrice() {
+        if (cartItem.length > 0) {
+            setCountCartItem(prevItem => prevItem - 1);
+            setTotalPrice(prevPrice => prevPrice - Number(price));
+            
+            if (countCartItem === 1) {
+                emptyCart(); // Call the emptyCart function when countCartItem reaches 0
+            }
+        }
+    }
+    
+      
     
     return (
         <Context.Provider 
@@ -41,11 +71,13 @@ function ContextProvider({children}) {
                 handleNextClick, 
                 handlePreviousClick, 
                 setCurrentIndex, 
-                toggleOn, 
-                setToggleOn,
-                toggleCart,
                 addToCart,
-                cartItem
+                cartItem,
+                emptyCart,
+                countCartItem,
+                addToPrice,
+                minusFromPrice,
+                totalPrice
             }}
         >
             {children}

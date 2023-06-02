@@ -6,8 +6,8 @@ import deleteIconHover from "../img/icon-delete-hover.svg";
 import useToggler from "../Hooks/useToggler";
 
 export default function Cart() {
-  const { hovered, enter, leave } = useToggler();
-  const { toggleOn, toggleCart, cartItem } = useContext(Context);
+  const { hovered, enter, leave, toggleOn, toggleCart, cartContainerRef } = useToggler();
+  const {  cartItem, emptyCart, countCartItem, totalPrice } = useContext(Context);
 
   const cartElement = cartItem.map((item) => (
     <div className="cartItem-container-main" key={item.name}>
@@ -16,7 +16,7 @@ export default function Cart() {
         <div className="cart-price-container">
           <p>{item.name}</p>
           <span>
-            ${item.price}.00 × <span className="increase-price">375.00</span>
+            ${item.price}.00 × {countCartItem}  <span className="increase-price">${totalPrice}.00</span>
           </span>
         </div>
         <img
@@ -25,6 +25,7 @@ export default function Cart() {
           className="delete-icon"
           onMouseEnter={() => enter("delete-icon")}
           onMouseLeave={leave}
+          onClick={emptyCart}
         />
       </div>
       <button className="checkout-btn">Checkout</button>
@@ -32,21 +33,21 @@ export default function Cart() {
   ));
 
   return (
-    <>
-      <div className="cart-count-container" onClick={toggleCart}>
+    <div ref={cartContainerRef}>
+      <div className="cart-count-container" onClick={() => toggleCart()} >
         <img src={cartIcon} alt="cart-icon" />
-        <span className="count-cart-item">0</span>
+        <span className="count-cart-item">{countCartItem}</span>
       </div>
       <div
         className="cart-container-top"
         style={{ display: toggleOn ? "block" : "none" }}
         
+       
       >
         <h3>Cart</h3>
         <div className="line"></div>
-
-        {cartElement}
+        {cartItem.length > 0 ? cartElement : <p className="em">Your cart is empty</p>}
       </div>
-    </>
+    </div>
   );
 }

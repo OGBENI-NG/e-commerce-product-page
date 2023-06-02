@@ -4,9 +4,9 @@ import closeMenu from "../img/icon-close.svg"
 import menuIcon from "../img/icon-menu.svg"
 
 function Navbar() {
-    const {toggleCart, toggleOn} = useToggler()
+    const {toggleCart, toggleOn, cartContainerRef} = useToggler()
     return(
-        <div className="">
+        <div ref={cartContainerRef}>
             <img 
                 src={menuIcon} alt="menu-icon"
                 onClick={toggleCart}

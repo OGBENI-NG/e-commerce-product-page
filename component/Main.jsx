@@ -13,7 +13,7 @@ import previousIconHover from "../img/icon-previous-hover.svg";
 import useToggler from "../Hooks/useToggler";
 
 export default function Main() {
-  const { toggleCart, toggleOn, hovered, enter, leave } = useToggler()
+  const { toggleCart, toggleOn, hovered, enter, leave, cartContainerRef } = useToggler()
   
   const {
     serviceData,
@@ -21,13 +21,17 @@ export default function Main() {
     handleNextClick,
     handlePreviousClick,
     addToCart,
-    cartItem
+    cartItem,
+    countCartItem,
+    addToPrice,
+    minusFromPrice
+    
   } = useContext(Context);
 
   const allData = serviceData.map((item, index) => (
     <div key={index} className="main">
       <div className="product-image-container">
-        <div className="product-img--carousel-container">
+        <div className="product-img--light-box-container">
           <img
             src={previousBtn}
             alt="bact-btn"
@@ -49,7 +53,7 @@ export default function Main() {
             onClick={() => handleNextClick(item)}
           />
 
-          <div className="carousel-container">
+          <div className="light-box-container">
             <Thumbnail item={item} index={index} key={index} />
           </div>
         </div>
@@ -64,18 +68,27 @@ export default function Main() {
           </div>
           <div className="add-to-cart-btn-container">
             <div className="add-more-item-container">
-              <img 
-                src={minusBtn} 
-                alt="minus-icon" 
-                className="plus-icon" 
-                
+              <button 
+                className="addPrice minus" 
+                disabled={countCartItem <= 0} 
+                onClick={minusFromPrice}
+              >
+                <img 
+                  src={minusBtn} 
+                  alt="minus-icon" 
+                  className="plus-icon minus-icon"
+                   
                 />
-              <span>0</span>
-              <img 
-                src={plusBtn} 
-                alt="plus-icon" 
-                className="plus-icon"
-              />
+              </button>
+              <span className="itemCount">{countCartItem}</span>
+              <button className="addPrice">
+                <img 
+                  src={plusBtn} 
+                  alt="plus-icon" 
+                  className="plus-icon "
+                  onClick={addToPrice}
+                />
+              </button>
             </div>
             <button onClick={() => addToCart(item)} disabled={cartItem.length}>
               <img src={cartIcon} alt="cart-icon" /> Add to cart
@@ -83,8 +96,8 @@ export default function Main() {
           </div>
         </div>
       </div>
-      <div className={`image-modal-container ${toggleOn ? "desktop--view" : ""}`}>
-        <div className="desktop-modal" >
+      <div className={`image-modal-container ${toggleOn ? "desktop--view" : ""}`} >
+        <div className="desktop-modal" ref={cartContainerRef}>
           <img
             onClick={toggleCart}
             src={hovered === "close-icon" ? closeIconRed : closeMenuWhite}
@@ -117,7 +130,7 @@ export default function Main() {
               onMouseLeave={leave}
              
             />
-            <div className="carousel-container">
+            <div className="light-box-container">
               <Thumbnail item={item} index={index} key={index} />
             </div>
           </div>
