@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import cartIcon from "../img/icon-cart.svg";
-import { Context } from "../Context";
-import deleteIcon from "../img/icon-delete.svg";
-import deleteIconHover from "../img/icon-delete-hover.svg";
-import useToggler from "../Hooks/useToggler";
+import React, { useContext } from "react"
+import cartIcon from "../img/icon-cart.svg"
+import { Context } from "../Context"
+import deleteIcon from "../img/icon-delete.svg"
+import deleteIconHover from "../img/icon-delete-hover.svg"
+import useToggler from "../Hooks/useToggler"
 
 export default function Cart() {
-  const { hovered, enter, leave, toggleOn, toggleCart, cartContainerRef } = useToggler();
-  const {  cartItem, emptyCart, countCartItem, totalPrice } = useContext(Context);
+  const { hovered, enter, leave, toggleOn, toggleCart, cartContainerRef } = useToggler()
+  const {  cartItem, emptyCart, countCartItem, totalPrice } = useContext(Context)
 
   const cartElement = cartItem.map((item) => (
     <div className="cartItem-container-main" key={item.name}>
@@ -30,7 +30,7 @@ export default function Cart() {
       </div>
       <button className="checkout-btn">Checkout</button>
     </div>
-  ));
+  ))
 
   return (
     <div ref={cartContainerRef}>
@@ -49,5 +49,5 @@ export default function Cart() {
         {cartItem.length > 0 ? cartElement : <p className="em">Your cart is empty</p>}
       </div>
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import React, {createContext, useState, useEffect} from "react"
+import React, { createContext, useState, useEffect } from "react"
 import data from "./data"
 
 const Context = createContext()
-
+// using context provider
 function ContextProvider({children}) {
     const [serviceData, setServiceData] = useState([])
     const [cartItem, setCartItem] = useState([])
@@ -16,8 +16,6 @@ function ContextProvider({children}) {
     useEffect(() =>{
         setServiceData(data)
     }, [serviceData])
-
-
 
     const handlePreviousClick = (item) => {
         setCurrentIndex((prevIndex) => 
@@ -46,7 +44,6 @@ function ContextProvider({children}) {
         if(cartItem.length > 0) {
             setCountCartItem(prevItem => prevItem + 1);
             setTotalPrice(prevPrice => prevPrice + Number(price))
-
         }
     }
 

@@ -85,7 +85,7 @@ export default function Main() {
                 <img 
                   src={plusBtn} 
                   alt="plus-icon" 
-                  className="plus-icon "
+                  className="plus-icon"
                   onClick={addToPrice}
                 />
               </button>
