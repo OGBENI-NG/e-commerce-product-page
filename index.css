@@ -337,9 +337,6 @@ button > img {
     margin: auto;
 }
 
-
-
-
 /* product image overlay */
 .image-modal-container{
     display: none;
@@ -409,12 +406,17 @@ button > img {
     }
     .product-image-container{
         justify-content: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 80px;
+        bottom: 0;
         width: 100%;
         max-width: 860px;
-        margin: 80px auto;
+        margin:  auto;
         gap: 70px;
         z-index: 5;
-        height: 100%;
+        height: auto;
     }
 
     .back-btn, .next-btn,
