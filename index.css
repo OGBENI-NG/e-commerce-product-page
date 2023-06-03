@@ -327,7 +327,9 @@ button > img {
     margin: 0;
     padding: 10px;
     box-shadow: none;
-
+}
+.addPrice:hover {
+    background-color: unset;
 }
 .addPrice img {
     height: max-content;

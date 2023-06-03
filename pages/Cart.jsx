@@ -41,8 +41,6 @@ export default function Cart() {
       <div
         className="cart-container-top"
         style={{ display: toggleOn ? "block" : "none" }}
-        
-       
       >
         <h3>Cart</h3>
         <div className="line"></div>
