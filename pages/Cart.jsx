@@ -36,7 +36,10 @@ export default function Cart() {
     <div ref={cartContainerRef}>
       <div className="cart-count-container" onClick={() => toggleCart()} >
         <img src={cartIcon} alt="cart-icon" />
-        <span className="count-cart-item">{countCartItem}</span>
+        <span 
+          style={{display: countCartItem === 0 ? "none" : 'block'}}
+          className="count-cart-item"
+        >{countCartItem}</span>
       </div>
       <div
         className="cart-container-top"
